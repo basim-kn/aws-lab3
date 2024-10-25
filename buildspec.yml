@@ -9,15 +9,15 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t training/mywebsiteforecs .
-      - docker tag training/mywebsiteforecs:latest 864899837235.dkr.ecr.ap-south-1.amazonaws.com/training/mywebsiteforecs:latest
+      - docker build -t basim-website1 .
+      - docker tag basim-website1:latest 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user26/basim-repo:latest
 
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker push 864899837235.dkr.ecr.ap-south-1.amazonaws.com/training/mywebsiteforecs:latest
+      - docker push 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user26/basim-repo:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"my-container","imageUri":"%s"}]' 864899837235.dkr.ecr.ap-south-1.amazonaws.com/training/mywebsiteforecs:latest > imagedefinitions.json
+      - printf '[{"name":"basim-container","imageUri":"%s"}]' 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user26/basim-repo:latest > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
